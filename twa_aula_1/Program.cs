@@ -8,15 +8,20 @@ namespace twa_aula_1
     {
         static void Main(string[] args)
         {
-            var StringConexao = "server=localhost:3306;uid=root;passord=;database=Teste";
+            var StringConexao = "server=localhost;uid=root;password=aluno;database=teste";
             var conexao = new MySqlConnection(StringConexao);
 
             conexao.Open();
 
-            var sql = "INSERT INTO Atleta (id, nome, altura, peso) VALUES (@id, @nome, @altura, @peso)";
+            var sql = "INSERT INTO atleta (id, nome, altura, peso) VALUES (@id, @nome, @altura, @peso)";
             var cmd = new MySqlCommand(sql, conexao);
 
+            cmd.Parameters.AddWithValue("@id", "1");
+            cmd.Parameters.AddWithValue("@nome", "Ana");
+            cmd.Parameters.AddWithValue("@altura", 1.7);
+            cmd.Parameters.AddWithValue("@peso", 70);
 
+            cmd.ExecuteNonQuery();
 
             conexao.Close();
 
